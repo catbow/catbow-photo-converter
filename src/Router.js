@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import Main from './pages/Main/Main';
+import Modal from './components/common/modal/\bModal';
+import Home from './pages/Home/Home';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/modal" element={<Modal />} />
       </Routes>
     </BrowserRouter>
   );

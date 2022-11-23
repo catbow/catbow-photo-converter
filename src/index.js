@@ -4,11 +4,18 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 import Router from './Router';
+import variables from './styles/variable';
+import { FileProvider } from './components/main/context/fileContext';
+import { ModalProvider } from './components/common/modal/contexts/modalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Router />
-  </ThemeProvider>
+  <FileProvider>
+    <ModalProvider>
+      <ThemeProvider theme={{ style: theme, variables }}>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
+    </ModalProvider>
+  </FileProvider>
 );

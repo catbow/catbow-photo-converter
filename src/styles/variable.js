@@ -21,6 +21,19 @@ const variables = {
     left: 50%;
     transform: translate(-50%, -50%);
   `,
+
+  rainBowColor: css`
+    background-image: linear-gradient(
+      to right,
+      red,
+      orange,
+      yellow,
+      green,
+      blue,
+      indigo,
+      purple
+    );
+  `,
 };
 
 export default variables;
