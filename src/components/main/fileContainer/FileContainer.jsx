@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useUploadFile } from '../context/fileContext';
+import { useUploadFile } from '../../../context/fileContext';
 import DeleteButton from './button/DeleteButton';
 import UploadButton from './button/UploadButton';
 

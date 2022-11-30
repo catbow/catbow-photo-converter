@@ -1,18 +1,29 @@
+/* eslint-disable no-useless-concat */
 import { useRef } from 'react';
 import { useVisibleModal } from './contexts/modalContext';
 
+export const modalTitle = {
+  DELELTE_TITLE: 'Are you sure you want to delete it?',
+  UPLOAD_TITLE: 'Are you sure you want to convert it?',
+};
+
 export const useModal = () => {
-  //   const [modalOn, setModalOn] = useState(false);
   const visibleModalRef = useRef();
-  const { deleteModal, setDeleteModal } = useVisibleModal();
+  const { onModal, setOnModal } = useVisibleModal();
 
   const clickOutSide = e => {
-    console.log(e.target);
-    console.log(visibleModalRef.current);
-    if (setDeleteModal && visibleModalRef.current !== e.target) {
-      setDeleteModal(pre => !pre);
+    if (
+      setOnModal &&
+      (visibleModalRef.current === e.target.parentElement ||
+        visibleModalRef.current === e.target)
+    ) {
+      return;
     }
-    console.log(visibleModalRef.current);
+
+    if (setOnModal && visibleModalRef.current !== e.target) {
+      setOnModal(pre => !pre);
+    }
   };
-  return { deleteModal, clickOutSide, visibleModalRef };
+
+  return { onModal, clickOutSide, visibleModalRef, modalTitle };
 };
