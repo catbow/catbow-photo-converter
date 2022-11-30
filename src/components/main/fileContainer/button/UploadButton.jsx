@@ -3,14 +3,34 @@
 // import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
+import { useVisibleModal } from '../../../contexts/ContextWrapper';
 import { useLoadFile } from '../../hooks/useLoadFile';
 
 const UploadButton = () => {
-  const { buttonState, buttonStateProps } = useLoadFile();
+  const { buttonState, handleFile, fileUrl, setButtonState } = useLoadFile();
+  const { setOnModal, setIsModalUploadButton } = useVisibleModal();
+
+  const buttonStateProps =
+    buttonState && fileUrl.length === 0
+      ? {
+          type: 'file',
+          onChange: e => {
+            handleFile(e);
+            setButtonState(pre => !pre);
+          },
+        }
+      : {
+          type: 'button',
+          onClick: e => {
+            setOnModal(pre => !pre);
+            setIsModalUploadButton(e.target.name);
+          },
+        };
+
   return (
     <FileUpLoadButton>
       <FileButton>
-        <div>{buttonState ? '  UPLOAD' : 'CONVERT'}</div>
+        <div>{buttonState ? '   UPLOAD' : 'CONVERT'}</div>
         <FileUpLoad {...buttonStateProps} name="uploadButton" />
       </FileButton>
     </FileUpLoadButton>

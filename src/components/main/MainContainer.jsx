@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import FileContainer from './fileContainer/FileContainer';
 import Modal from '../common/modal/\bModal';
+import FileContainer from './fileContainer/FileContainer';
 
 const MainContainer = () => {
   return (

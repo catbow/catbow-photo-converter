@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Router from './Router';
+
 import { ThemeProvider } from 'styled-components';
+import { ContextWrapper } from './components/contexts/ContextWrapper';
+
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
-import Router from './Router';
 import variables from './styles/variable';
-import { FileProvider } from './context/fileContext';
-import { ModalProvider } from './components/common/modal/contexts/modalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <FileProvider>
-    <ModalProvider>
-      <ThemeProvider theme={{ style: theme, variables }}>
-        <GlobalStyle />
-        <Router />
-      </ThemeProvider>
-    </ModalProvider>
-  </FileProvider>
+  <ContextWrapper>
+    <ThemeProvider theme={{ style: theme, variables }}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
+  </ContextWrapper>
 );

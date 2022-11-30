@@ -1,17 +1,16 @@
 /* eslint-disable no-useless-concat */
 import { useRef } from 'react';
-import { useVisibleModal } from './contexts/modalContext';
-
-export const modalTitle = {
-  DELELTE_TITLE: 'Are you sure you want to delete it?',
-  UPLOAD_TITLE: 'Are you sure you want to convert it?',
-};
+import { useVisibleModal } from '../../contexts/ContextWrapper';
 
 export const useModal = () => {
   const visibleModalRef = useRef();
   const { onModal, setOnModal } = useVisibleModal();
 
   const clickOutSide = e => {
+    console.log('ref', visibleModalRef.current);
+    console.log('parent', e.target.parentElement);
+    console.log('e.target', e.target);
+
     if (
       setOnModal &&
       (visibleModalRef.current === e.target.parentElement ||
@@ -20,10 +19,14 @@ export const useModal = () => {
       return;
     }
 
-    if (setOnModal && visibleModalRef.current !== e.target) {
+    if (
+      setOnModal &&
+      (visibleModalRef.current !== e.target ||
+        visibleModalRef.current !== e.target.parentElement)
+    ) {
       setOnModal(pre => !pre);
     }
   };
 
-  return { onModal, clickOutSide, visibleModalRef, modalTitle };
+  return { onModal, clickOutSide, visibleModalRef };
 };

@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Modal from './components/common/modal/\bModal';
-import Home from './pages/Home/Home';
+import Header from './components/common/Header';
+import { Loading } from './components/common/Loading';
+import Home from './pages/Home';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/modal" element={<Modal />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </BrowserRouter>
   );

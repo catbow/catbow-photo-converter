@@ -1,26 +1,102 @@
 import React from 'react';
-import { useUploadFile } from '../../../context/fileContext';
+import axios from 'axios';
+import { v1 } from 'uuid';
+import AWS from 'aws-sdk';
+import { saveAs } from 'file-saver';
+
+import {
+  useLoading,
+  useUploadFile,
+  useVisibleModal,
+} from '../../contexts/ContextWrapper';
 import { useModal } from './useModal';
-import { useVisibleModal } from './contexts/modalContext';
+
 import styled from 'styled-components';
 
+export const modalTitle = {
+  DELELTE_TITLE: 'Are you sure you want to delete it?',
+  UPLOAD_TITLE: 'Are you sure you want to convert it?',
+};
+
 const Modal = () => {
-  const { clickOutSide, visibleModalRef, onModal, modalTitle } = useModal();
-  const { setFileUrl, setButtonState } = useUploadFile();
-  const { isUploadButton, setIsUploadButton } = useVisibleModal();
+  const { clickOutSide, visibleModalRef, onModal } = useModal();
+  const { setFileUrl, setButtonState, fileList } = useUploadFile();
+  const { isModalUploadButton, setIsModalUploadButton } = useVisibleModal();
+  const { setLoadingToogle } = useLoading();
 
   const deleteFile = () => {
     setFileUrl('');
     setButtonState(pre => !pre);
   };
 
+  const submitFile = () => {
+    setLoadingToogle(pre => !pre);
+    const s3 = new AWS.S3({
+      accessKeyId: process.env.REACT_APP_ACCESS,
+      secretAccessKey: process.env.REACT_APP_SECRET,
+      region: process.env.REACT_APP_REGION,
+    });
+
+    const uploadParams = {
+      Bucket: process.env.REACT_APP_BUCKET_NAME,
+      Body: fileList[0],
+      Key: `image/${v1().toString().replace('-', '')}.${
+        fileList[0].type.split('/')[1]
+      }`,
+      ContentType: fileList[0].type,
+    };
+
+    s3.putObject(uploadParams, (data, err) => {
+      const fileKey = uploadParams.Key;
+      try {
+        console.log('업로드 되었습니다.');
+        sendToServer(fileKey);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  };
+
+  const sendToServer = fileKey => {
+    const video = {
+      video: fileKey,
+    };
+
+    const { data } = axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_BASE_URL}/video/create`,
+      data: video,
+    });
+    saveZipFile(data);
+  };
+
+  const saveZipFile = zipFile => {
+    fetch(zipFile, { method: 'GET' })
+      .then(res => {
+        return res.blob();
+      })
+      .then(blob => {
+        saveAs(blob, 'myItem.extension');
+      })
+      .catch(err => {
+        console.error('err: ', err);
+      });
+  };
+
   const modalProps =
-    onModal && isUploadButton === 'uploadButton'
+    onModal && isModalUploadButton === 'uploadButton'
       ? {
-          onClick: console.log(111) && setIsUploadButton(''),
+          onClick: () => {
+            submitFile();
+            setIsModalUploadButton('');
+            setButtonState(pre => !pre);
+          },
         }
       : {
-          onClick: deleteFile && setIsUploadButton(''),
+          onClick: () => {
+            deleteFile();
+            setIsModalUploadButton('');
+          },
         };
 
   return (
@@ -31,14 +107,14 @@ const Modal = () => {
             ❗️
             <br />
             <br />
-            {isUploadButton === 'uploadButton'
+            {isModalUploadButton === 'uploadButton'
               ? modalTitle.UPLOAD_TITLE
               : modalTitle.DELELTE_TITLE}
             <br />
           </Title>
           <ButtonContainer>
             <ButtonYes {...modalProps}>
-              {isUploadButton === 'uploadButton' ? 'convert' : 'delete'}
+              {isModalUploadButton === 'uploadButton' ? 'convert' : 'delete'}
             </ButtonYes>
             <ButtonNo> cancel </ButtonNo>
           </ButtonContainer>
@@ -82,7 +158,7 @@ export const ButtonContainer = styled.div`
   ${props => props.theme.variables.flex('row', 'space-evenly', 'center')}
 `;
 
-export const ButtonYes = styled.div`
+export const ButtonYes = styled.button`
   font-size: 17px;
   cursor: pointer;
   &:hover {
@@ -90,7 +166,7 @@ export const ButtonYes = styled.div`
   }
 `;
 
-export const ButtonNo = styled.div`
+export const ButtonNo = styled.button`
   font-size: 17px;
   cursor: pointer;
   &:hover {
