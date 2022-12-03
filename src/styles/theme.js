@@ -1,5 +1,5 @@
 const theme = {
-  mainBlue: '#2087C9',
+  mainColor: 'linear-gradient(20deg, rgb(33, 33, 33), rgb(66, 66, 66))',
   white: '#FFFFFF',
   mainBeige: '#ffff',
   mainLine: '#CCCCCC',
@@ -15,12 +15,6 @@ const theme = {
   gray500: '#E0E0E0',
   gray600: '#F2F2F2',
   gray700: '#F9F9F9',
-  black: '#000',
-  bigFont: '38px',
-  middleFont: '25px',
-  smallFont: '18px',
-  smallerFont: '13px',
-  paddingSpace: '48px',
 };
 
 export default theme;

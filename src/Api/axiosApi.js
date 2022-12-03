@@ -1,0 +1,13 @@
+import axios from 'axios';
+
+export const sendUrlToSeverAxios = fileKey => {
+  const video = {
+    video: fileKey,
+  };
+  const res = axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/video/create`,
+    data: video,
+  });
+  return res;
+};
