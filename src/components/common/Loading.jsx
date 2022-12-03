@@ -17,6 +17,7 @@ export const Loading = () => {
 };
 
 const StyledLoading = styled.div`
+  ${props => props.theme.variables.flex()};
   ${props => props.theme.variables.fixedCenter};
   background: ${props => props.theme.style.mainColor};
   z-index: 100;
@@ -29,7 +30,7 @@ const LoadingCircleAnimation = keyframes`
   }
   75% {
     stroke-dashoffset: -147;
-  }
+  }s
   100% {
     stroke-dashoffset: 157;
   }
