@@ -7,10 +7,6 @@ export const useModal = () => {
   const { onModal, setOnModal } = useVisibleModal();
 
   const clickOutSide = e => {
-    console.log('ref', visibleModalRef.current);
-    console.log('parent', e.target.parentElement);
-    console.log('e.target', e.target);
-
     if (
       setOnModal &&
       (visibleModalRef.current === e.target.parentElement ||
