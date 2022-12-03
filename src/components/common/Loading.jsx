@@ -1,21 +1,26 @@
 import styled, { keyframes } from 'styled-components';
+import { useLoading } from '../contexts/ContextWrapper';
 
 export const Loading = () => {
+  const { loadingToogle } = useLoading();
   return (
-    <div>
-      <StyledLoading>
-        <StyledSvg>
-          <circle cx="50%" cy="50%" r="25%" />
-        </StyledSvg>
-      </StyledLoading>
-    </div>
+    loadingToogle && (
+      <div>
+        <StyledLoading>
+          <StyledSvg>
+            <circle cx="50%" cy="50%" r="25%" />
+          </StyledSvg>
+        </StyledLoading>
+      </div>
+    )
   );
 };
 
-const LoadingSpin = keyframes`
- 100% {
-    transform: rotate(360deg);
-  }
+const StyledLoading = styled.div`
+  ${props => props.theme.variables.fixedCenter};
+  background: ${props => props.theme.style.mainColor};
+  z-index: 100;
+  transition: 0.7s;
 `;
 
 const LoadingCircleAnimation = keyframes`
@@ -30,18 +35,10 @@ const LoadingCircleAnimation = keyframes`
   }
 `;
 
-const StyledLoading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  background: ${props => props.theme.style.mainColor};
-  transition: 0.7s;
+const LoadingSpin = keyframes`
+ 100% {
+    transform: rotate(360deg);
+  }
 `;
 
 const StyledSvg = styled.svg`

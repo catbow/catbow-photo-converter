@@ -1,17 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-import { v1 } from 'uuid';
-import AWS from 'aws-sdk';
-import { saveAs } from 'file-saver';
-
-import {
-  useLoading,
-  useUploadFile,
-  useVisibleModal,
-} from '../../contexts/ContextWrapper';
+import { useUploadFile, useVisibleModal } from '../../contexts/ContextWrapper';
 import { useModal } from './useModal';
-
 import styled from 'styled-components';
+import { useS3download } from '../../main/hooks/useS3download';
 
 export const modalTitle = {
   DELELTE_TITLE: 'Are you sure you want to delete it?',
@@ -19,69 +10,11 @@ export const modalTitle = {
 };
 
 const Modal = () => {
+  const { submitFile } = useS3download();
   const { clickOutSide, visibleModalRef, onModal } = useModal();
-  const { setFileUrl, setButtonState, fileList } = useUploadFile();
-  const { isModalUploadButton, setIsModalUploadButton } = useVisibleModal();
-  const { setLoadingToogle } = useLoading();
-
-  const deleteFile = () => {
-    setFileUrl('');
-    setButtonState(pre => !pre);
-  };
-
-  const submitFile = () => {
-    setLoadingToogle(pre => !pre);
-    const s3 = new AWS.S3({
-      accessKeyId: process.env.REACT_APP_ACCESS,
-      secretAccessKey: process.env.REACT_APP_SECRET,
-      region: process.env.REACT_APP_REGION,
-    });
-
-    const uploadParams = {
-      Bucket: process.env.REACT_APP_BUCKET_NAME,
-      Body: fileList[0],
-      Key: `image/${v1().toString().replace('-', '')}.${
-        fileList[0].type.split('/')[1]
-      }`,
-      ContentType: fileList[0].type,
-    };
-
-    s3.putObject(uploadParams, (data, err) => {
-      const fileKey = uploadParams.Key;
-      try {
-        console.log('업로드 되었습니다.');
-        sendToServer(fileKey);
-      } catch (err) {
-        console.log(err);
-      }
-    });
-  };
-
-  const sendToServer = fileKey => {
-    const video = {
-      video: fileKey,
-    };
-
-    const { data } = axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_BASE_URL}/video/create`,
-      data: video,
-    });
-    saveZipFile(data);
-  };
-
-  const saveZipFile = zipFile => {
-    fetch(zipFile, { method: 'GET' })
-      .then(res => {
-        return res.blob();
-      })
-      .then(blob => {
-        saveAs(blob, 'myItem.extension');
-      })
-      .catch(err => {
-        console.error('err: ', err);
-      });
-  };
+  const { setFileUrl, setButtonState } = useUploadFile();
+  const { isModalUploadButton, setIsModalUploadButton, setOnModal } =
+    useVisibleModal();
 
   const modalProps =
     onModal && isModalUploadButton === 'uploadButton'
@@ -90,6 +23,7 @@ const Modal = () => {
             submitFile();
             setIsModalUploadButton('');
             setButtonState(pre => !pre);
+            setFileUrl('');
           },
         }
       : {
@@ -98,6 +32,16 @@ const Modal = () => {
             setIsModalUploadButton('');
           },
         };
+
+  const handleCancel = e => {
+    e.stopPropagation();
+    setOnModal(pre => !pre);
+  };
+
+  const deleteFile = () => {
+    setFileUrl('');
+    setButtonState(pre => !pre);
+  };
 
   return (
     onModal && (
@@ -116,7 +60,7 @@ const Modal = () => {
             <ButtonYes {...modalProps}>
               {isModalUploadButton === 'uploadButton' ? 'convert' : 'delete'}
             </ButtonYes>
-            <ButtonNo> cancel </ButtonNo>
+            <ButtonNo onClick={handleCancel}> cancel </ButtonNo>
           </ButtonContainer>
         </Layout>
       </Background>

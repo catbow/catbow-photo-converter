@@ -3,6 +3,7 @@ import React from 'react';
 // import Sider from '../../components/common/adContainer/Sider';
 import MainContainer from '../components/main/MainContainer';
 import styled from 'styled-components';
+import { Loading } from '../components/common/Loading';
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       {/* <Sider /> */}
       <MainContainer />
       {/* <Sider /> */}
+      <Loading />
     </Layout>
   );
 };
