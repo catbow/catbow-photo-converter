@@ -2,7 +2,7 @@ import React from 'react';
 import { useUploadFile, useVisibleModal } from '../../contexts/ContextWrapper';
 import { useModal } from './useModal';
 import styled from 'styled-components';
-import { useS3download } from '../../main/hooks/useS3download';
+import useS3download from '../../main/hooks/useS3Download';
 
 export const modalTitle = {
   DELELTE_TITLE: 'Are you sure you want to delete it?',

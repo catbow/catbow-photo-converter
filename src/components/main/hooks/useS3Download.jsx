@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 import { useLoading, useUploadFile } from '../../contexts/ContextWrapper';
 import { sendUrlToSeverAxios } from '../../../Api/axiosApi';
 
-export const useS3download = () => {
+const useS3download = () => {
   const { fileList } = useUploadFile();
   const { setLoadingToogle } = useLoading();
 
@@ -56,3 +56,5 @@ export const useS3download = () => {
   };
   return { submitFile };
 };
+
+export default useS3download;
