@@ -28,11 +28,9 @@ const useS3download = () => {
     s3.putObject(uploadParams, (data, err) => {
       const fileKey = uploadParams.Key;
       try {
-        //TODO 콘솔 지우기
-        console.log('업로드 되었습니다.');
         sendToServer(fileKey);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     });
   };
