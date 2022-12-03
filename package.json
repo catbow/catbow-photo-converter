@@ -1,5 +1,6 @@
 {
   "name": "wanted",
+  "homepage": "https://catbow.github.io/catbow-photo-converter/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
