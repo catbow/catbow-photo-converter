@@ -3,13 +3,11 @@ import styled from 'styled-components';
 
 import MainContainer from '../components/main/MainContainer';
 import Sider from '../components/common/adContainer/Sider';
-import { Loading } from '../components/common/page/Loading';
 
 const Home = () => {
   return (
     <Layout>
       <Sider />
-      <Loading />
       <MainContainer />
       <Sider />
     </Layout>

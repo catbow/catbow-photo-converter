@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const ModalContext = createContext();
 export const FileContext = createContext();
@@ -10,13 +10,13 @@ export const ContextWrapper = ({ children }) => {
   const [fileList, setFileList] = useState([]);
 
   const [onModal, setOnModal] = useState(false);
-  const [isModalUploadButton, setIsModalUploadButton] = useState('');
+  const [isModalUploadButton, setIsModalUploadButton] =
+    useState('deleteButton');
+  const [keyEventTarget, setKeyEventTarget] = useState('left');
 
   const [loadingToogle, setLoadingToogle] = useState(false);
-  const [errorToogle, setErrorToogle] = useState(false);
 
-  useMemo(() => [loadingToogle, setLoadingToogle], [loadingToogle]);
-  useMemo(() => [errorToogle, setErrorToogle], [errorToogle]);
+  const [mode, setMode] = useState('show');
 
   return (
     <FileContext.Provider
@@ -35,14 +35,16 @@ export const ContextWrapper = ({ children }) => {
           setOnModal,
           isModalUploadButton,
           setIsModalUploadButton,
+          keyEventTarget,
+          setKeyEventTarget,
         }}
       >
         <LoadingContext.Provider
           value={{
             loadingToogle,
             setLoadingToogle,
-            errorToogle,
-            setErrorToogle,
+            mode,
+            setMode,
           }}
         >
           {children}

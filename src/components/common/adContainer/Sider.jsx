@@ -7,7 +7,7 @@ const Sider = () => {
 
 export default Sider;
 
-export const AdContainer = styled.div`
+const AdContainer = styled.div`
   //   width: 336px;
   width: 200px;
   height: 100vh;
