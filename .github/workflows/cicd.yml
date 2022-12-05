@@ -16,6 +16,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+      - name: Setting environment variables
+        run: echo "REACT_APP_BASE_URL=$REACT_APP_BASE_URL" >> .env.production
+          echo "REACT_APP_BUCKET_NAME=$REACT_APP_BUCKET_NAME" >> .env.production
+          echo "REACT_APP_REGION=$REACT_APP_REGION" >> .env.production
+          echo "REACT_APP_ACCESS=$REACT_APP_ACCESS" >> .env.production
+          echo "REACT_APP_SECRET=$REACT_APP_SECRET" >> .env.production
+        env:
+          REACT_APP_BASE_URL: ${{secrets.REACT_APP_BASE_URL}}
+          REACT_APP_BUCKET_NAME: ${{secrets.REACT_APP_BUCKET_NAME}}
+          REACT_APP_REGION: ${{secrets.REACT_APP_REGION}}
+          REACT_APP_ACCESS: ${{secrets.REACT_APP_ACCESS}}
+          REACT_APP_SECRET: ${{secrets.REACT_APP_SECRET}}
 
       - name: Install npm package
         run: npm install
