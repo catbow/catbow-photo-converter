@@ -1,8 +1,7 @@
 import { useUploadFile } from '../../contexts/ContextWrapper';
 
 export const useLoadFile = () => {
-  const { fileUrl, setFileUrl, buttonState, setButtonState, setFileList } =
-    useUploadFile();
+  const { setFileUrl, setButtonState, setFileList } = useUploadFile();
 
   const handleFile = e => {
     const passed = e.target.files[0]?.type === 'video/mp4';
@@ -21,9 +20,6 @@ export const useLoadFile = () => {
   };
 
   return {
-    buttonState,
     handleFile,
-    fileUrl,
-    setButtonState,
   };
 };

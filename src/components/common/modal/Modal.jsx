@@ -3,6 +3,7 @@ import { useUploadFile, useVisibleModal } from '../../contexts/ContextWrapper';
 import { useModal } from './useModal';
 import styled from 'styled-components';
 import useS3download from '../../main/hooks/useS3Download';
+import { useEffect } from 'react';
 
 export const modalTitle = {
   DELELTE_TITLE: 'Are you sure you want to delete it?',
@@ -11,25 +12,31 @@ export const modalTitle = {
 
 const Modal = () => {
   const { submitFile } = useS3download();
-  const { clickOutSide, visibleModalRef, onModal } = useModal();
+  const { clickOutSide, visibleModalRef } = useModal();
   const { setFileUrl, setButtonState } = useUploadFile();
-  const { isModalUploadButton, setIsModalUploadButton, setOnModal } =
-    useVisibleModal();
+  const {
+    onModal,
+    setOnModal,
+    isModalUploadButton,
+    setIsModalUploadButton,
+    keyEventTarget,
+    setKeyEventTarget,
+  } = useVisibleModal();
 
   const modalProps =
     onModal && isModalUploadButton === 'uploadButton'
       ? {
           onClick: () => {
             submitFile();
-            setIsModalUploadButton('');
-            setButtonState(pre => !pre);
+            setIsModalUploadButton('deleteButton');
+            setButtonState(true);
             setFileUrl('');
           },
         }
       : {
           onClick: () => {
             deleteFile();
-            setIsModalUploadButton('');
+            setIsModalUploadButton('deleteButton');
           },
         };
 
@@ -40,31 +47,79 @@ const Modal = () => {
 
   const deleteFile = () => {
     setFileUrl('');
-    setButtonState(pre => !pre);
+    setButtonState(true);
   };
 
+  useEffect(() => {
+    const keyEvent = ({ key }) => {
+      if (key === 'Enter' && isModalUploadButton === 'uploadButton') {
+        if (keyEventTarget === 'left') {
+          submitFile();
+        }
+        if (keyEventTarget === 'right') {
+          setKeyEventTarget('left');
+        }
+      }
+
+      if (key === 'Enter' && isModalUploadButton === 'deleteButton') {
+        if (keyEventTarget === 'left') {
+          setFileUrl('');
+          setButtonState(true);
+          setOnModal(false);
+        }
+        if (keyEventTarget === 'right') {
+          setOnModal(false);
+          setKeyEventTarget('left');
+        }
+      }
+      if (key === 'ArrowLeft') {
+        setKeyEventTarget('left');
+      }
+      if (key === 'ArrowRight') {
+        setKeyEventTarget('right');
+      }
+    };
+    if (onModal) {
+      window.addEventListener('keydown', keyEvent);
+    }
+    return () => window.removeEventListener('keydown', keyEvent);
+  }, [
+    isModalUploadButton,
+    keyEventTarget,
+    onModal,
+    setButtonState,
+    setFileUrl,
+    setKeyEventTarget,
+    setOnModal,
+    submitFile,
+  ]);
+
+  if (!onModal) {
+    return;
+  }
+
   return (
-    onModal && (
-      <Background onClick={clickOutSide}>
-        <Layout ref={visibleModalRef}>
-          <Title>
-            ❗️
-            <br />
-            <br />
-            {isModalUploadButton === 'uploadButton'
-              ? modalTitle.UPLOAD_TITLE
-              : modalTitle.DELELTE_TITLE}
-            <br />
-          </Title>
-          <ButtonContainer>
-            <ButtonYes {...modalProps}>
-              {isModalUploadButton === 'uploadButton' ? 'convert' : 'delete'}
-            </ButtonYes>
-            <ButtonNo onClick={handleCancel}> cancel </ButtonNo>
-          </ButtonContainer>
-        </Layout>
-      </Background>
-    )
+    <Background onClick={clickOutSide}>
+      <Layout ref={visibleModalRef}>
+        <Title>
+          ❗️
+          <br />
+          <br />
+          {isModalUploadButton === 'uploadButton'
+            ? modalTitle.UPLOAD_TITLE
+            : modalTitle.DELELTE_TITLE}
+          <br />
+        </Title>
+        <ButtonContainer>
+          <ButtonYes {...modalProps} keyEventTarget={keyEventTarget}>
+            {isModalUploadButton === 'uploadButton' ? 'convert' : 'delete'}
+          </ButtonYes>
+          <ButtonNo onClick={handleCancel} keyEventTarget={keyEventTarget}>
+            cancel
+          </ButtonNo>
+        </ButtonContainer>
+      </Layout>
+    </Background>
   );
 };
 
@@ -103,6 +158,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ButtonYes = styled.button`
+  color: ${({ keyEventTarget }) => (keyEventTarget === 'left' ? 'red' : '')};
   font-size: 17px;
   cursor: pointer;
   &:hover {
@@ -111,6 +167,7 @@ export const ButtonYes = styled.button`
 `;
 
 export const ButtonNo = styled.button`
+  color: ${({ keyEventTarget }) => (keyEventTarget === 'right' ? 'red' : '')};
   font-size: 17px;
   cursor: pointer;
   &:hover {

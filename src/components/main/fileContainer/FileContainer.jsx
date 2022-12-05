@@ -10,7 +10,7 @@ const FileContainer = () => {
   return (
     <Layout>
       <Title> 🗂 Upload your Files! </Title>
-      {fileUrl.length !== 0 ? <DeleteButton /> : ''}
+      <DeleteButton />
       <ShowingFile
         src={fileUrl}
         // poster="https://st3.depositphotos.com/15827064/18746/v/450/depositphotos_187463916-stock-illustration-camera-icon-with-question-mark.jpg"

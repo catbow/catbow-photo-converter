@@ -10,8 +10,13 @@ export const ContextWrapper = ({ children }) => {
   const [fileList, setFileList] = useState([]);
 
   const [onModal, setOnModal] = useState(false);
-  const [isModalUploadButton, setIsModalUploadButton] = useState('');
+  const [isModalUploadButton, setIsModalUploadButton] =
+    useState('deleteButton');
+  const [keyEventTarget, setKeyEventTarget] = useState('left');
+
   const [loadingToogle, setLoadingToogle] = useState(false);
+
+  const [mode, setMode] = useState('show');
 
   return (
     <FileContext.Provider
@@ -30,9 +35,18 @@ export const ContextWrapper = ({ children }) => {
           setOnModal,
           isModalUploadButton,
           setIsModalUploadButton,
+          keyEventTarget,
+          setKeyEventTarget,
         }}
       >
-        <LoadingContext.Provider value={{ loadingToogle, setLoadingToogle }}>
+        <LoadingContext.Provider
+          value={{
+            loadingToogle,
+            setLoadingToogle,
+            mode,
+            setMode,
+          }}
+        >
           {children}
         </LoadingContext.Provider>
       </ModalContext.Provider>

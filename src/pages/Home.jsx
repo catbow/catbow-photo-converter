@@ -1,17 +1,15 @@
 import React from 'react';
-
-// import Sider from '../../components/common/adContainer/Sider';
-import MainContainer from '../components/main/MainContainer';
 import styled from 'styled-components';
-import { Loading } from '../components/common/Loading';
+
+import MainContainer from '../components/main/MainContainer';
+import Sider from '../components/common/adContainer/Sider';
 
 const Home = () => {
   return (
     <Layout>
-      {/* <Sider /> */}
+      <Sider />
       <MainContainer />
-      {/* <Sider /> */}
-      <Loading />
+      <Sider />
     </Layout>
   );
 };

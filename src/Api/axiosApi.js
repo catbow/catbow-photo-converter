@@ -11,3 +11,18 @@ export const sendUrlToSeverAxios = fileKey => {
   });
   return res;
 };
+
+export const getZipFileToSeverAxios = (videoName, videoId) => {
+  const datas = {
+    videoName: videoName,
+    videoId: videoId,
+  };
+
+  const res = axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/video/download`,
+    data: datas,
+  });
+
+  return res;
+};
