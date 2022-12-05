@@ -3,11 +3,15 @@
 // import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
-import { useVisibleModal } from '../../../contexts/ContextWrapper';
+import {
+  useUploadFile,
+  useVisibleModal,
+} from '../../../contexts/ContextWrapper';
 import { useLoadFile } from '../../hooks/useLoadFile';
 
 const UploadButton = () => {
-  const { buttonState, handleFile, fileUrl, setButtonState } = useLoadFile();
+  const { handleFile } = useLoadFile();
+  const { fileUrl, buttonState, setButtonState } = useUploadFile();
   const { setOnModal, setIsModalUploadButton } = useVisibleModal();
 
   const buttonStateProps =

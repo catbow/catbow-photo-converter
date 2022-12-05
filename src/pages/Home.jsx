@@ -1,17 +1,17 @@
 import React from 'react';
-
-// import Sider from '../../components/common/adContainer/Sider';
-import MainContainer from '../components/main/MainContainer';
 import styled from 'styled-components';
-import { Loading } from '../components/common/Loading';
+
+import MainContainer from '../components/main/MainContainer';
+import Sider from '../components/common/adContainer/Sider';
+import { Loading } from '../components/common/page/Loading';
 
 const Home = () => {
   return (
     <Layout>
-      {/* <Sider /> */}
-      <MainContainer />
-      {/* <Sider /> */}
+      <Sider />
       <Loading />
+      <MainContainer />
+      <Sider />
     </Layout>
   );
 };

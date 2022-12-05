@@ -2,11 +2,15 @@ import { v1 } from 'uuid';
 import AWS from 'aws-sdk';
 import { saveAs } from 'file-saver';
 import { useLoading, useUploadFile } from '../../contexts/ContextWrapper';
-import { sendUrlToSeverAxios } from '../../../Api/axiosApi';
+import {
+  sendUrlToSeverAxios,
+  getZipFileToSeverAxios,
+} from '../../../Api/axiosApi';
 
 const useS3download = () => {
   const { fileList } = useUploadFile();
-  const { setLoadingToogle } = useLoading();
+  const { loadingToogle, setLoadingToogle, setErrorToogle, errorToogle } =
+    useLoading();
 
   const submitFile = () => {
     setLoadingToogle(pre => !pre);
@@ -30,13 +34,34 @@ const useS3download = () => {
       try {
         sendToServer(fileKey);
       } catch (err) {
-        console.error(err);
+        setLoadingToogle(pre => !pre);
+        setErrorToogle(pre => !pre);
+        console.error(`S3 putObject ${err}`);
       }
     });
   };
 
   const sendToServer = fileKey => {
-    sendUrlToSeverAxios(fileKey).then(res => saveZipFile(res.data.img));
+    sendUrlToSeverAxios(fileKey)
+      .then(res =>
+        //TODO 광고
+        getZipFileToSever(res.data.videoName, res.data.videoId)
+      )
+      .catch(err => {
+        setLoadingToogle(pre => !pre);
+        setErrorToogle(pre => !pre);
+        console.err(err);
+      });
+  };
+
+  const getZipFileToSever = (videoName, videoId) => {
+    getZipFileToSeverAxios(videoName, videoId)
+      .then(res => saveZipFile(res.data.img))
+      .catch(err => {
+        setLoadingToogle(pre => !pre);
+        setErrorToogle(pre => !pre);
+        console.err(err);
+      });
   };
 
   const saveZipFile = zipFile => {
@@ -46,13 +71,19 @@ const useS3download = () => {
       })
       .then(blob => {
         saveAs(blob, 'catbow.zip');
+        setLoadingToogle(pre => !pre);
       })
       .catch(err => {
+        if (loadingToogle) {
+          setLoadingToogle(pre => !pre);
+        }
+        if (!errorToogle) {
+          setErrorToogle(pre => !pre);
+        }
         console.error('err: ', err);
       });
-    setLoadingToogle(pre => !pre);
   };
+
   return { submitFile };
 };
-
 export default useS3download;

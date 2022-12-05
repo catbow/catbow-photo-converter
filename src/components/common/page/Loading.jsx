@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import { useLoading } from '../contexts/ContextWrapper';
+import { useLoading } from '../../contexts/ContextWrapper';
 
 export const Loading = () => {
   const { loadingToogle } = useLoading();
+
   return (
     loadingToogle && (
       <div>

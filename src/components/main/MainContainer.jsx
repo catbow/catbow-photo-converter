@@ -22,7 +22,6 @@ export const Layout = styled.div`
   min-height: 100vh;
   margin-bottom: 10px;
   padding-bottom: 100px;
-  // box-shadow: rgb(0 0 0 / 17%) 0px 2px 20px;
 `;
 
 export const Title = styled.h1`

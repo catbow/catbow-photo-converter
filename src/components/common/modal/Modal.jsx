@@ -11,9 +11,9 @@ export const modalTitle = {
 
 const Modal = () => {
   const { submitFile } = useS3download();
-  const { clickOutSide, visibleModalRef, onModal } = useModal();
+  const { clickOutSide, visibleModalRef } = useModal();
   const { setFileUrl, setButtonState } = useUploadFile();
-  const { isModalUploadButton, setIsModalUploadButton, setOnModal } =
+  const { isModalUploadButton, setIsModalUploadButton, onModal, setOnModal } =
     useVisibleModal();
 
   const modalProps =

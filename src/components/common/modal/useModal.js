@@ -4,7 +4,7 @@ import { useVisibleModal } from '../../contexts/ContextWrapper';
 
 export const useModal = () => {
   const visibleModalRef = useRef();
-  const { onModal, setOnModal } = useVisibleModal();
+  const { setOnModal } = useVisibleModal();
 
   const clickOutSide = e => {
     if (
@@ -24,5 +24,5 @@ export const useModal = () => {
     }
   };
 
-  return { onModal, clickOutSide, visibleModalRef };
+  return { clickOutSide, visibleModalRef };
 };
