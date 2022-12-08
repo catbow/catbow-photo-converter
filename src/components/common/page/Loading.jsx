@@ -1,11 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 import { useLoading } from '../../contexts/ContextWrapper';
 
-export const Loading = () => {
-  const { loadingToogle } = useLoading();
+const Loading = () => {
+  const { mode } = useLoading();
 
   return (
-    loadingToogle && (
+    mode === 'loading' && (
       <div>
         <StyledLoading>
           <StyledSvg>
@@ -16,6 +16,8 @@ export const Loading = () => {
     )
   );
 };
+
+export default Loading;
 
 const StyledLoading = styled.div`
   ${props => props.theme.variables.flex()};
@@ -31,7 +33,7 @@ const LoadingCircleAnimation = keyframes`
   }
   75% {
     stroke-dashoffset: -147;
-  }s
+  }
   100% {
     stroke-dashoffset: 157;
   }

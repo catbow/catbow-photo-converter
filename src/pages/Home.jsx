@@ -5,12 +5,14 @@ import MainContainer from '../components/main/MainContainer';
 // import Sider from '../components/common/adContainer/Sider';
 import { Loading } from '../components/common/page/Loading';
 
+import Sider from '../components/common/adContainer/Sider';
+
 const Home = () => {
   return (
     <Layout>
       {/* <Sider /> */}
       <Loading />
-
+      <Sider />
       <MainContainer />
       {/* <Sider /> */}
     </Layout>

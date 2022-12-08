@@ -9,11 +9,10 @@ import {
 
 const useS3download = () => {
   const { fileList } = useUploadFile();
-  const { loadingToogle, setLoadingToogle, setErrorToogle, errorToogle } =
-    useLoading();
+  const { mode, setMode } = useLoading();
 
   const submitFile = () => {
-    setLoadingToogle(pre => !pre);
+    setMode('loading');
     const s3 = new AWS.S3({
       accessKeyId: process.env.REACT_APP_ACCESS,
       secretAccessKey: process.env.REACT_APP_SECRET,
@@ -34,8 +33,7 @@ const useS3download = () => {
       try {
         sendToServer(fileKey);
       } catch (err) {
-        setLoadingToogle(pre => !pre);
-        setErrorToogle(pre => !pre);
+        setMode('error');
         console.error(`S3 putObject ${err}`);
       }
     });
@@ -48,9 +46,8 @@ const useS3download = () => {
         getZipFileToSever(res.data.videoName, res.data.videoId)
       )
       .catch(err => {
-        setLoadingToogle(pre => !pre);
-        setErrorToogle(pre => !pre);
-        console.err(err);
+        setMode('error');
+        console.error(err);
       });
   };
 
@@ -58,9 +55,8 @@ const useS3download = () => {
     getZipFileToSeverAxios(videoName, videoId)
       .then(res => saveZipFile(res.data.img))
       .catch(err => {
-        setLoadingToogle(pre => !pre);
-        setErrorToogle(pre => !pre);
-        console.err(err);
+        setMode('error');
+        console.error(err);
       });
   };
 
@@ -71,14 +67,11 @@ const useS3download = () => {
       })
       .then(blob => {
         saveAs(blob, 'catbow.zip');
-        setLoadingToogle(pre => !pre);
+        setMode('show');
       })
       .catch(err => {
-        if (loadingToogle) {
-          setLoadingToogle(pre => !pre);
-        }
-        if (!errorToogle) {
-          setErrorToogle(pre => !pre);
+        if (mode !== 'error') {
+          setMode('error');
         }
         console.error('err: ', err);
       });

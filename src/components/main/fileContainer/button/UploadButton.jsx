@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-labels */
-// import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 import {
@@ -25,9 +22,9 @@ const UploadButton = () => {
         }
       : {
           type: 'button',
-          onClick: e => {
+          onClick: () => {
             setOnModal(pre => !pre);
-            setIsModalUploadButton(e.target.name);
+            setIsModalUploadButton('uploadButton');
           },
         };
 
@@ -35,7 +32,7 @@ const UploadButton = () => {
     <FileUpLoadButton>
       <FileButton>
         <div>{buttonState ? '   UPLOAD' : 'CONVERT'}</div>
-        <FileUpLoad {...buttonStateProps} name="uploadButton" />
+        <FileUpLoad {...buttonStateProps} />
       </FileButton>
     </FileUpLoadButton>
   );

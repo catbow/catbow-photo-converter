@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { useLoading } from '../../contexts/ContextWrapper';
 
 const Error = () => {
-  const { errorToogle, setErrorToogle } = useLoading();
+  const { mode, setMode } = useLoading();
 
-  const goBack = () => setErrorToogle(pre => !pre);
+  const goBack = () => setMode('show');
 
   return (
-    errorToogle && (
+    mode === 'error' && (
       <Layout>
         sorry, Try again 😞
         <BacktoHome onClick={goBack}>Go Back</BacktoHome>
