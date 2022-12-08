@@ -25,7 +25,7 @@ const FileContainer = () => {
 
 export default FileContainer;
 
-export const Layout = styled.div`
+export const Layout = styled.article`
   ${props => props.theme.variables.flex('column')}
   width: 600px;
   min-height: 600px;
