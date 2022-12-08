@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import MainContainer from '../components/main/MainContainer';
-import Sider from '../components/common/adContainer/Sider';
+// import Sider from '../components/common/adContainer/Sider';
 import { Loading } from '../components/common/page/Loading';
 
 const Home = () => {
   return (
     <Layout>
-      <Sider />
+      {/* <Sider /> */}
       <Loading />
+
       <MainContainer />
-      <Sider />
+      {/* <Sider /> */}
     </Layout>
   );
 };
