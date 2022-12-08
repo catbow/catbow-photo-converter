@@ -6,7 +6,6 @@ const theme = {
   boxBorderColor: '#ffe4e1',
   boxColor: '#faf0e6',
   blue: '#536DFE',
-  red: '#EB5757',
 };
 
 export default theme;
