@@ -1,16 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useLoading } from '../../contexts/ContextWrapper';
+import {
+  useLoading,
+  useUploadFile,
+  useVisibleModal,
+} from '../../contexts/ContextWrapper';
 
 const Error = () => {
   const { mode, setMode } = useLoading();
+  const { setOnModal } = useVisibleModal();
+  const { setFileUrl } = useUploadFile();
 
-  const goBack = () => setMode('show');
+  const goBack = () => {
+    setMode('show');
+    setOnModal(false);
+    setFileUrl('');
+  };
 
   return (
     mode === 'error' && (
       <Layout>
-        sorry, Try again 😞
+        sorry SangWo, Try again 💪
         <BacktoHome onClick={goBack}>Go Back</BacktoHome>
       </Layout>
     )
