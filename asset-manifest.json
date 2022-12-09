@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/catbow-photo-converter/static/js/main.d0848f0c.js",
+    "main.js": "/catbow-photo-converter/static/js/main.7012fe82.js",
     "index.html": "/catbow-photo-converter/index.html",
-    "main.d0848f0c.js.map": "/catbow-photo-converter/static/js/main.d0848f0c.js.map"
+    "main.7012fe82.js.map": "/catbow-photo-converter/static/js/main.7012fe82.js.map"
   },
   "entrypoints": [
-    "static/js/main.d0848f0c.js"
+    "static/js/main.7012fe82.js"
   ]
 }
