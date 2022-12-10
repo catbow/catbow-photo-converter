@@ -128,7 +128,7 @@ export default Modal;
 export const Background = styled.div`
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
 `;

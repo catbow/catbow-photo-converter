@@ -7,7 +7,6 @@ export const sendUrlToSeverAxios = fileKey => {
   const res = axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/video/create`,
-    headers: { referrerPolicy: 'unsafe_url' },
     data: video,
   });
   return res;

@@ -20,7 +20,10 @@ const Error = () => {
   return (
     mode === 'error' && (
       <Layout>
-        sorry SangWo, Try again 💪
+        🌈 sorry SangWoo, Try again 🌈
+        <br />
+        <br />
+        ❗️ go for it ❗️
         <BacktoHome onClick={goBack}>Go Back</BacktoHome>
       </Layout>
     )
