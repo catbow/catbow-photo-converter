@@ -24,9 +24,7 @@ const MainContainer = () => {
           Click here to use the converted images to the scrollview
         </Tooltip>
       </Title>
-
       <Modal />
-
       <FileContainer />
     </Layout>
   );
