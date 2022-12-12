@@ -19,7 +19,7 @@ const HeaderAd = () => {
   return (
     <div
       className="headerAd"
-      style={{ width: '100vw', display: 'flex', justifyContent: 'center' }}
+      style={{ display: 'flex', justifyContent: 'center', height: '10vh' }}
     />
   );
 };
