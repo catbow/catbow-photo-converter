@@ -20,11 +20,16 @@ const MainContainer = () => {
         >
           Catbow😼
         </a>
-        <Tooltip hover={hover}>
-          🌈 Click me to use the converted images to the scrollview
-        </Tooltip>
       </Title>
-
+      <Tooltip hover={hover}>
+        Click here to use the converted images to the scrollview
+      </Tooltip>
+      <Visitor href="https://hits.seeyoufarm.com">
+        <img
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcatbow.github.io%2Fcatbow-photo-converter%2F&count_bg=%23000000&title_bg=%23050505&icon=&icon_color=%23FFFFFF&title=Visits&edge_flat=false"
+          alt="visitor"
+        />
+      </Visitor>
       <Modal />
 
       <FileContainer />
@@ -40,6 +45,10 @@ export const Layout = styled.div`
   min-height: 100vh;
   margin-bottom: 10px;
   padding: 10px 0;
+<<<<<<< HEAD
+=======
+  position: relative;
+>>>>>>> main
 `;
 
 export const Title = styled.h1`
@@ -80,4 +89,38 @@ export const Tooltip = styled.div`
     border-style: solid;
     border-color: transparent transparent black transparent;
   }
+`;
+
+export const Tooltip = styled.div`
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  visibility: ${({ hover }) => !hover && 'hidden'};
+  width: 80%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  right: 0px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+`;
+
+export const Visitor = styled.a`
+  position: absolute;
+  top: 110px;
+  right: 0;
 `;
