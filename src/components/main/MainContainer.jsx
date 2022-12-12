@@ -24,12 +24,6 @@ const MainContainer = () => {
       <Tooltip hover={hover}>
         Click here to use the converted images to the scrollview
       </Tooltip>
-      <Visitor href="https://hits.seeyoufarm.com">
-        <img
-          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcatbow.github.io%2Fcatbow-photo-converter%2F&count_bg=%23000000&title_bg=%23050505&icon=&icon_color=%23FFFFFF&title=Visits&edge_flat=false"
-          alt="visitor"
-        />
-      </Visitor>
       <Modal />
 
       <FileContainer />
