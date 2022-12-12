@@ -20,8 +20,7 @@ export const getZipFileToSeverAxios = (videoName, videoId) => {
 
   const res = axios({
     method: 'post',
-    url: `${process.env.REACT_APP_BASE_URL}
-    /video/download`,
+    url: `${process.env.REACT_APP_BASE_URL}/video/download`,
     data: datas,
   });
 
