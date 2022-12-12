@@ -31,6 +31,7 @@ const MainContainer = () => {
         />
       </Visitor>
       <Modal />
+
       <FileContainer />
     </Layout>
   );
@@ -53,6 +54,7 @@ export const Title = styled.h1`
   ${props => props.theme.variables.rainBowColor};
   -webkit-background-clip: text;
   color: transparent;
+  position: relative;
 `;
 
 export const Tooltip = styled.div`
@@ -60,7 +62,7 @@ export const Tooltip = styled.div`
   display: inline-block;
   border-bottom: 1px dotted black;
   visibility: ${({ hover }) => !hover && 'hidden'};
-  width: 80%;
+  width: 190%;
   background-color: black;
   color: #fff;
   text-align: center;
@@ -68,18 +70,19 @@ export const Tooltip = styled.div`
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  top: 2px;
-  right: 0px;
+  bottom: -25px;
+  left: -23px;
+  font-size: 0.9rem;
 
   &:after {
     content: '';
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-color: transparent transparent black transparent;
   }
 `;
 
