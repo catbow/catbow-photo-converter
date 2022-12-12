@@ -1,5 +1,4 @@
 import axios from 'axios';
-import https from 'https';
 
 export const sendUrlToSeverAxios = fileKey => {
   const video = {
@@ -9,7 +8,6 @@ export const sendUrlToSeverAxios = fileKey => {
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/video/create`,
     data: video,
-    httpsAgent: new https.Agent({ keepAlive: true }),
   });
   return res;
 };
