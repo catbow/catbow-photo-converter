@@ -45,10 +45,7 @@ export const Layout = styled.div`
   min-height: 100vh;
   margin-bottom: 10px;
   padding: 10px 0;
-<<<<<<< HEAD
-=======
   position: relative;
->>>>>>> main
 `;
 
 export const Title = styled.h1`
@@ -73,8 +70,6 @@ export const Tooltip = styled.div`
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  /* right: -210px;
-  top: -30px; */
   bottom: -25px;
   left: -23px;
   font-size: 0.9rem;
@@ -88,34 +83,6 @@ export const Tooltip = styled.div`
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent black transparent;
-  }
-`;
-
-export const Tooltip = styled.div`
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-  visibility: ${({ hover }) => !hover && 'hidden'};
-  width: 80%;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  top: 2px;
-  right: 0px;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
   }
 `;
 
