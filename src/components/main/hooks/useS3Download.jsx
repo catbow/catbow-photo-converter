@@ -68,7 +68,9 @@ const useS3download = () => {
 
   const getZipFileToSever = (videoName, videoId) => {
     getZipFileToSeverAxios(videoName, videoId)
-      .then(res => saveZipFile(res.data.img))
+      .then(res => {
+        saveZipFile(res.data.img);
+      })
       .catch(err => {
         setMode('error');
         console.error(err);
