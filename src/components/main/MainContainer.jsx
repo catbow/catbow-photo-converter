@@ -21,7 +21,7 @@ export const Layout = styled.div`
   color: white;
   min-height: 100vh;
   margin-bottom: 10px;
-  padding-bottom: 100px;
+  padding: 0 100px;
 `;
 
 export const Title = styled.h1`
