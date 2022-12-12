@@ -11,6 +11,11 @@ const useS3download = () => {
   const { fileList } = useUploadFile();
   const { mode, setMode } = useLoading();
 
+  /**
+   * S3 상위 함수
+   *S3 정보를 담음
+   */
+
   const submitFile = () => {
     setMode('loading');
     const s3 = new AWS.S3({
@@ -18,6 +23,8 @@ const useS3download = () => {
       secretAccessKey: process.env.REACT_APP_SECRET,
       region: process.env.REACT_APP_REGION,
     });
+
+    /**S3 파일 정보 담는 함수, 보통 key 값으로 파일명을 쓰지만 여러 사용자가 쓸 경우 파일명이 겹칠 수 있기 때문에 UUID 를 사용*/
 
     const uploadParams = {
       Bucket: process.env.REACT_APP_BUCKET_NAME,
@@ -27,6 +34,10 @@ const useS3download = () => {
       }`,
       ContentType: fileList[0].type,
     };
+
+    /** S3 올리는 로직, aws-sdk 라이브러리, putObject 메서드 사용함.
+     * 서버에 동영상 올린 URL를 주기 위해 파일키를 fileKey 변수에 담음
+     * (URL 주소는 버킷명, 폴더, 파일명으로 이루어져있기 때문에 파일명만 알아도 서버에서 접근 가능) */
 
     s3.putObject(uploadParams, (data, err) => {
       const fileKey = uploadParams.Key;
@@ -38,6 +49,8 @@ const useS3download = () => {
       }
     });
   };
+
+  /** 서버로 fileKey 보내는 함수, response로 videoName과 videoId를 받음 */
 
   const sendToServer = fileKey => {
     sendUrlToSeverAxios(fileKey)
@@ -51,6 +64,8 @@ const useS3download = () => {
       });
   };
 
+  /** 서버로 videoName과 videoId를 보내는 함수, 이를 통해서 해당 zip파일 받아옴 */
+
   const getZipFileToSever = (videoName, videoId) => {
     getZipFileToSeverAxios(videoName, videoId)
       .then(res => saveZipFile(res.data.img))
@@ -59,6 +74,8 @@ const useS3download = () => {
         console.error(err);
       });
   };
+
+  /** 해당 zip파일 받아서 자동 다운로드하는 함수 */
 
   const saveZipFile = zipFile => {
     fetch(zipFile, { method: 'GET' })
