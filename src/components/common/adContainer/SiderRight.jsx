@@ -22,7 +22,7 @@ const SiderRight = () => {
         className="siderRightAdfit"
         styled={{
           marginLeft: '50%',
-          transform: 'translate(-50%, 10px)',
+          transform: 'translateX(-50%)',
         }}
       />
     </AdContainer>
@@ -34,5 +34,5 @@ export default SiderRight;
 export const AdContainer = styled.div`
   ${props => props.theme.variables.flex()};
   width: 336px;
-  height: 100vh;
+  height: 700px;
 `;

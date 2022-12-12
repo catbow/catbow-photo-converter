@@ -32,11 +32,9 @@ const FileContainer = () => {
 export default FileContainer;
 
 export const Layout = styled.article`
-  ${props => props.theme.variables.flex('column')}
-  width: 600px;
-  min-height: 600px;
+  ${props => props.theme.variables.flex('column')};
+  padding: 35px 34px 27px 34px;
   border: 2px dashed white;
-  margin-top: 30px;
   border-radius: 7px;
   position: relative;
 `;
@@ -48,7 +46,9 @@ export const Title = styled.h2`
 `;
 
 export const ShowingFile = styled.video`
-  width: 450px;
+  width: 40vw;
+  min-width: 450px;
+  max-width: 450px;
   background-size: cover;
 `;
 

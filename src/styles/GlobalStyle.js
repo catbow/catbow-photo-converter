@@ -1,15 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import theme from './theme';
+import variables from './variable';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
   body {
-    height: 100vh;
-    overflow-y: hidden; 
+    overflow-x: auto; 
+    background:${theme.mainColor};
+    height:100vh;
+    width:100vw;
   }
   main {
-    background:${theme.mainColor};
+    ${variables.flex('column', 'center', 'center')};
   }
   * {
     box-sizing: border-box;

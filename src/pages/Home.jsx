@@ -24,5 +24,6 @@ const Home = () => {
 export default Home;
 
 export const Layout = styled.div`
-  ${props => props.theme.variables.flex('row', 'space-evenly', 'stretch')};
+  ${props => props.theme.variables.flex()};
+  height: 90vh;
 `;
