@@ -1,8 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  body {
+    height: 100vh;
+    overflow-y: hidden; 
+  }
+  main {
+    background:${theme.mainColor};
+  }
   * {
     box-sizing: border-box;
   }
