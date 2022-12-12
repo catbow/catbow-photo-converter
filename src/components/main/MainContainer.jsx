@@ -20,10 +20,11 @@ const MainContainer = () => {
         >
           Catbow😼
         </a>
+        <Tooltip hover={hover}>
+          Click here to use the converted images to the scrollview
+        </Tooltip>
       </Title>
-      <Tooltip hover={hover}>
-        Click here to use the converted images to the scrollview
-      </Tooltip>
+
       <Modal />
 
       <FileContainer />
@@ -65,7 +66,7 @@ export const Tooltip = styled.div`
   position: absolute;
   z-index: 1;
   bottom: -25px;
-  left: -23px;
+  left: -13px;
   font-size: 0.9rem;
 
   &:after {
