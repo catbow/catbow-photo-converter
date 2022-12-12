@@ -28,6 +28,7 @@ const Modal = () => {
       ? {
           onClick: () => {
             submitFile();
+            setOnModal(true);
             setIsModalUploadButton('deleteButton');
             setButtonState(true);
             setFileUrl('');
