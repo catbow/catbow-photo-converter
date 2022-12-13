@@ -19,7 +19,12 @@ const HeaderAd = () => {
   return (
     <div
       className="headerAd"
-      style={{ display: 'flex', justifyContent: 'center', height: '10vh' }}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        height: '10vh',
+        zIndex: 100,
+      }}
     />
   );
 };

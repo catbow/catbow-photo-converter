@@ -23,7 +23,7 @@ const UploadButton = () => {
       : {
           type: 'button',
           onClick: () => {
-            setOnModal(pre => !pre);
+            fileUrl.length !== 0 && setOnModal(pre => !pre);
             setIsModalUploadButton('uploadButton');
           },
         };
@@ -31,8 +31,13 @@ const UploadButton = () => {
   return (
     <FileUpLoadButton>
       <FileButton>
-        <div>{buttonState ? '   UPLOAD' : 'CONVERT'}</div>
-        <FileUpLoad {...buttonStateProps} />
+        <div style={{ paddingTop: '8px' }}>
+          {buttonState ? 'UPLOAD' : 'CONVERT'}
+        </div>
+        <FileUpLoad
+          {...buttonStateProps}
+          // disabled={ableToConvert}
+        />
       </FileButton>
     </FileUpLoadButton>
   );
@@ -52,6 +57,7 @@ export const FileButton = styled.label`
   border-radius: 9.5px;
   cursor: pointer;
   padding-left: 15px;
+  display: inline;
 `;
 
 export const FileUpLoadButton = styled.form`
@@ -63,4 +69,5 @@ export const FileUpLoadButton = styled.form`
   border-radius: 10px;
   margin-top: 50px;
   cursor: pointer;
+  // opacity: ${({ ableToConvert }) => (!ableToConvert ? '' : '0.7')}
 `;
