@@ -31,7 +31,9 @@ const UploadButton = () => {
   return (
     <FileUpLoadButton>
       <FileButton>
-        <div>{buttonState ? '   UPLOAD' : 'CONVERT'}</div>
+        <div style={{ paddingTop: '8px' }}>
+          {buttonState ? 'UPLOAD' : 'CONVERT'}
+        </div>
         <FileUpLoad
           {...buttonStateProps}
           // disabled={ableToConvert}
@@ -55,6 +57,7 @@ export const FileButton = styled.label`
   border-radius: 9.5px;
   cursor: pointer;
   padding-left: 15px;
+  display: inline;
 `;
 
 export const FileUpLoadButton = styled.form`
