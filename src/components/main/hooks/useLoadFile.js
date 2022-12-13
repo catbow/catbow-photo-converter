@@ -14,6 +14,21 @@ export const useLoadFile = () => {
       return alert('mp4 형식만 가능합니다');
     }
     if (passed) {
+      let videoElement = document.createElement('video');
+      videoElement.src = URL.createObjectURL(e.target.files[0]);
+      const timer = setTimeout(() => {
+        if (videoElement.readyState === 4) {
+          if (videoElement.duration > 30) {
+            alert('Videos must not be longer than 30 seconds 😥');
+            window.location.reload();
+            setFileList('');
+            setFileUrl('');
+            setButtonState(pre => !pre);
+          }
+          clearTimeout(timer);
+        }
+      }, 500);
+
       setFileList(e.target.files);
       setFileUrl(URL.createObjectURL(e.target.files[0]));
     }
