@@ -99,7 +99,6 @@ const Modal = () => {
     return;
   }
 
-  console.log(onModal);
   return (
     <Background onClick={clickOutSide}>
       <Layout ref={visibleModalRef}>
