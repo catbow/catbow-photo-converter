@@ -17,9 +17,12 @@ const SiderLeft = () => {
     document.querySelector('.siderLeftAdfit').appendChild(scr);
   }, []);
   return (
-    <AdContainer>
-      <div className="siderLeftAdfit" />
-    </AdContainer>
+    <div
+      className="siderLeftAdfit"
+      style={{
+        padding: '5%',
+      }}
+    />
   );
 };
 

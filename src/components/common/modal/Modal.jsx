@@ -27,17 +27,18 @@ const Modal = () => {
     onModal && isModalUploadButton === 'uploadButton'
       ? {
           onClick: () => {
-            submitFile();
             setOnModal(false);
-            setIsModalUploadButton('deleteButton');
-            setButtonState(true);
             setFileUrl('');
+            submitFile();
+            setIsModalUploadButton('deleteButton');
+            setButtonState(pre => !pre);
           },
         }
       : {
           onClick: () => {
             deleteFile();
             setIsModalUploadButton('deleteButton');
+            setButtonState(pre => !pre);
           },
         };
 
@@ -48,7 +49,6 @@ const Modal = () => {
 
   const deleteFile = () => {
     setFileUrl('');
-    setButtonState(true);
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Modal = () => {
       if (key === 'Enter' && isModalUploadButton === 'deleteButton') {
         if (keyEventTarget === 'left') {
           setFileUrl('');
-          setButtonState(true);
+          setButtonState(pre => !pre);
           setOnModal(false);
         }
         if (keyEventTarget === 'right') {
@@ -99,7 +99,6 @@ const Modal = () => {
     return;
   }
 
-  console.log(onModal);
   return (
     <Background onClick={clickOutSide}>
       <Layout ref={visibleModalRef}>
