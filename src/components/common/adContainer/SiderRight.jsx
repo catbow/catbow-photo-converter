@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { AdContainer } from './adStyle';
 
 const SiderRight = () => {
   useEffect(() => {
