@@ -18,8 +18,6 @@ export const ContextWrapper = ({ children }) => {
 
   const [mode, setMode] = useState('show');
 
-  //20메가 30초 60프레임
-
   return (
     <FileContext.Provider
       value={{
