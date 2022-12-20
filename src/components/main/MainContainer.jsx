@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from '../common/modal/\bModal';
 import FileContainer from './fileContainer/FileContainer';
 
 const MainContainer = () => {
@@ -8,7 +7,6 @@ const MainContainer = () => {
 
   return (
     <Layout>
-      <div>🌈</div>
       <Title
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -24,7 +22,6 @@ const MainContainer = () => {
           Click here to use the converted images to the scrollview
         </Tooltip>
       </Title>
-      <Modal />
       <FileContainer />
     </Layout>
   );
@@ -33,16 +30,16 @@ const MainContainer = () => {
 export default MainContainer;
 
 export const Layout = styled.div`
+  width: 100%;
+  height: 100%;
   ${props => props.theme.variables.flex('column')};
   color: white;
-  margin-bottom: 10vh;
-  position: relative;
 `;
 
 export const Title = styled.h1`
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 800;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   ${props => props.theme.variables.rainBowColor};
   -webkit-background-clip: text;
   color: transparent;

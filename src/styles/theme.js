@@ -1,5 +1,5 @@
 const theme = {
-  mainColor: 'linear-gradient(20deg, rgb(33, 33, 33), rgb(66, 66, 66))',
+  mainColor: 'rgb(66, 66, 66)',
   white: '#FFFFFF',
   mainBeige: '#ffff',
   mainLine: '#CCCCCC',

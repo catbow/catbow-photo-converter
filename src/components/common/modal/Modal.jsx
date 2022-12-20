@@ -28,7 +28,7 @@ const Modal = () => {
       ? {
           onClick: () => {
             submitFile();
-            setOnModal(true);
+            setOnModal(false);
             setIsModalUploadButton('deleteButton');
             setButtonState(true);
             setFileUrl('');
@@ -99,6 +99,7 @@ const Modal = () => {
     return;
   }
 
+  console.log(onModal);
   return (
     <Background onClick={clickOutSide}>
       <Layout ref={visibleModalRef}>
@@ -127,20 +128,21 @@ const Modal = () => {
 export default Modal;
 
 export const Background = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
+  color: ${({ theme }) => theme.style.white};
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  z-index: 900;
 `;
 
 export const Layout = styled.div`
-  ${props => props.theme.variables.absoluteCenter}
-  ${props => props.theme.variables.flex('column', 'space-evenly', 'center')}
+  ${({ theme }) => theme.variables.absoluteCenter}
+  ${({ theme }) => theme.variables.flex('column', 'space-evenly', 'center')}
   width : 300px;
   height: 200px;
   border: #333333 1px solid;
-  background: ${props => props.theme.style.mainColor};
+  background: ${({ theme }) => theme.style.mainColor};
   padding: 15px;
   border-radius: 20px;
   z-index: 100;

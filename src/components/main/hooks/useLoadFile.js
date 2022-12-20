@@ -9,13 +9,16 @@ export const useLoadFile = () => {
     if (!e.target.files) {
       return alert('파일이 업로드 되지 않았습니다');
     }
+
     if (!passed) {
       setButtonState(pre => !pre);
       return alert('mp4 형식만 가능합니다');
     }
+
     if (passed) {
       let videoElement = document.createElement('video');
       videoElement.src = URL.createObjectURL(e.target.files[0]);
+
       const timer = setTimeout(() => {
         if (videoElement.readyState === 4) {
           if (videoElement.duration > 30) {

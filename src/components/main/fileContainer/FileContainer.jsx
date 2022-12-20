@@ -33,16 +33,15 @@ export default FileContainer;
 
 export const Layout = styled.article`
   ${props => props.theme.variables.flex('column')};
-  padding: 35px 34px 27px 34px;
+  padding: 20px;
   border: 2px dashed white;
   border-radius: 7px;
   position: relative;
 `;
 
 export const Title = styled.h2`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 500;
-  padding-bottom: 50px;
 `;
 
 export const ShowingFile = styled.video`

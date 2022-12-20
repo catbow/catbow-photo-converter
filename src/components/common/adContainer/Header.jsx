@@ -22,8 +22,6 @@ const HeaderAd = () => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        height: '10vh',
-        zIndex: 100,
       }}
     />
   );

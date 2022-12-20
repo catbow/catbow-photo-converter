@@ -8,11 +8,13 @@ import { useLoadFile } from '../../hooks/useLoadFile';
 
 const UploadButton = () => {
   const { handleFile } = useLoadFile();
-  const { fileUrl, buttonState, setButtonState } = useUploadFile();
+  const { buttonState, setButtonState, fileList } = useUploadFile();
   const { setOnModal, setIsModalUploadButton } = useVisibleModal();
 
+  const ableToConvert = fileList[0]?.size < 15728635 && fileList.length !== 0;
+
   const buttonStateProps =
-    buttonState && fileUrl.length === 0
+    buttonState && fileList.length === 0
       ? {
           type: 'file',
           onChange: e => {
@@ -22,22 +24,21 @@ const UploadButton = () => {
         }
       : {
           type: 'button',
+          disabled: !ableToConvert,
           onClick: () => {
-            fileUrl.length !== 0 && setOnModal(pre => !pre);
+            fileList.length !== 0 && setOnModal(pre => !pre);
             setIsModalUploadButton('uploadButton');
           },
         };
 
+  // 15728640byte === 15mb
+  console.log(ableToConvert);
+
   return (
     <FileUpLoadButton>
       <FileButton>
-        <div style={{ paddingTop: '8px' }}>
-          {buttonState ? 'UPLOAD' : 'CONVERT'}
-        </div>
-        <FileUpLoad
-          {...buttonStateProps}
-          // disabled={ableToConvert}
-        />
+        <FileState>{buttonState ? 'UPLOAD' : 'CONVERT'}</FileState>
+        <FileUpLoad {...buttonStateProps} />
       </FileButton>
     </FileUpLoadButton>
   );
@@ -49,25 +50,26 @@ export const FileUpLoad = styled.input`
   opacity: 0;
 `;
 
+const FileState = styled.div`
+  height: 100%;
+  ${({ theme }) => theme.variables.flex()};
+`;
+
 export const FileButton = styled.label`
-  ${props => props.theme.variables.flex()};
   width: 95px;
   height: 30px;
   background: black;
   border-radius: 9.5px;
   cursor: pointer;
-  padding-left: 15px;
-  display: inline;
 `;
 
 export const FileUpLoadButton = styled.form`
-  ${props => props.theme.variables.rainBowColor};
-  ${props => props.theme.variables.flex()};
+  ${({ theme }) => theme.variables.rainBowColor};
+  ${({ theme }) => theme.variables.flex()};
+  margin-top: 20px;
   width: 100px;
   height: 35px;
-  font-weight: 900;
+  font-weight: 800;
   border-radius: 10px;
-  margin-top: 50px;
   cursor: pointer;
-  // opacity: ${({ ableToConvert }) => (!ableToConvert ? '' : '0.7')}
 `;

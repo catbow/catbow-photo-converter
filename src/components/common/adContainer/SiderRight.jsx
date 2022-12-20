@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import { AdContainer } from './adStyle';
 
 const SiderRight = () => {
   useEffect(() => {
@@ -18,21 +18,9 @@ const SiderRight = () => {
   }, []);
   return (
     <AdContainer>
-      <div
-        className="siderRightAdfit"
-        styled={{
-          marginLeft: '50%',
-          transform: 'translateX(-50%)',
-        }}
-      />
+      <div className="siderRightAdfit" />
     </AdContainer>
   );
 };
 
 export default SiderRight;
-
-export const AdContainer = styled.div`
-  ${props => props.theme.variables.flex()};
-  width: 336px;
-  height: 700px;
-`;
