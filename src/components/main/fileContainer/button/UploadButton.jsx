@@ -8,13 +8,13 @@ import { useLoadFile } from '../../hooks/useLoadFile';
 
 const UploadButton = () => {
   const { handleFile } = useLoadFile();
-  const { buttonState, setButtonState, fileList } = useUploadFile();
+  const { buttonState, setButtonState, fileList, fileUrl } = useUploadFile();
   const { setOnModal, setIsModalUploadButton } = useVisibleModal();
 
   const ableToConvert = fileList[0]?.size < 15728635 && fileList.length !== 0;
 
   const buttonStateProps =
-    buttonState && fileList.length === 0
+    buttonState && fileUrl.length === 0
       ? {
           type: 'file',
           onChange: e => {
@@ -25,8 +25,9 @@ const UploadButton = () => {
       : {
           type: 'button',
           disabled: !ableToConvert,
-          onClick: () => {
-            fileList.length !== 0 && setOnModal(pre => !pre);
+          onClick: e => {
+            e.preventDefault();
+            fileUrl.length !== 0 && setOnModal(pre => !pre);
             setIsModalUploadButton('uploadButton');
           },
         };
@@ -55,19 +56,19 @@ const FileState = styled.div`
 `;
 
 export const FileButton = styled.label`
-  width: 95px;
-  height: 30px;
+  width: 93%;
+  height: 80%;
   background: black;
-  border-radius: 9.5px;
+  border-radius: 9px;
   cursor: pointer;
 `;
 
 export const FileUpLoadButton = styled.form`
   ${({ theme }) => theme.variables.rainBowColor};
   ${({ theme }) => theme.variables.flex()};
-  margin-top: 20px;
+  margin: 20px;
   width: 100px;
-  height: 35px;
+  height: 40px;
   font-weight: 800;
   border-radius: 10px;
   cursor: pointer;

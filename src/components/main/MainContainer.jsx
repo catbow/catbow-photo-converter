@@ -32,15 +32,15 @@ export default MainContainer;
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
-  ${props => props.theme.variables.flex('column')};
+  ${({ theme }) => theme.variables.flex('column')};
   color: white;
 `;
 
 export const Title = styled.h1`
-  font-size: 40px;
-  font-weight: 800;
+  font-size: 3.5rem;
+  font-weight: 900;
   padding-bottom: 20px;
-  ${props => props.theme.variables.rainBowColor};
+  ${({ theme }) => theme.variables.rainBowColor};
   -webkit-background-clip: text;
   color: transparent;
   position: relative;

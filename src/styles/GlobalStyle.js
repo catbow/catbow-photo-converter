@@ -7,9 +7,8 @@ const GlobalStyle = createGlobalStyle`
   html {
     background:${theme.mainColor};
   }
-  body {
-    width: 100vw;
-    height : 100vh;
+  main{
+    width: 100%;
   }
   * {
     box-sizing: border-box;
