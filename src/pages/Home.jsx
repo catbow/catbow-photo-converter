@@ -26,6 +26,6 @@ export default Home;
 
 export const Layout = styled.div`
   ${({ theme }) => theme.variables.flex()};
-  ${({ theme }) => theme.variables.fixedCenter};\
+  ${({ theme }) => theme.variables.fixedCenter};
   padding-top: 12%;
 `;
