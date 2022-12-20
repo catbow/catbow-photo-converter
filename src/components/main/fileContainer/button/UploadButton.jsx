@@ -32,7 +32,6 @@ const UploadButton = () => {
         };
 
   // 15728640byte === 15mb
-  console.log(ableToConvert);
 
   return (
     <FileUpLoadButton>
