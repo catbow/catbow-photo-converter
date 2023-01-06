@@ -64,7 +64,7 @@ const useS3download = () => {
       });
   };
 
-  /** 서버로 videoName과 videoId를 보내는 함수, 이를 통해서 해당 zip파일 받아옴 */
+  /** 서버로 videoName과 videoId를 보내는 함수, 이를 통해서 해당 zip파일 받습니다 */
 
   const getZipFileToSever = (videoName, videoId) => {
     getZipFileToSeverAxios(videoName, videoId)
