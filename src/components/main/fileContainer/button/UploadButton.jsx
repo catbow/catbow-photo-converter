@@ -32,8 +32,6 @@ const UploadButton = () => {
           },
         };
 
-  // 15728640byte === 15mb
-
   return (
     <FileUpLoadButton>
       <FileButton>
