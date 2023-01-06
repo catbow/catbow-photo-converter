@@ -11,7 +11,7 @@ const UploadButton = () => {
   const { buttonState, setButtonState, fileList, fileUrl } = useUploadFile();
   const { setOnModal, setIsModalUploadButton } = useVisibleModal();
 
-  const ableToConvert = fileList[0]?.size < 15728635 && fileList.length !== 0;
+  const ableToConvert = fileList[0]?.size < 20971520 && fileList.length !== 0;
 
   const buttonStateProps =
     buttonState && fileUrl.length === 0
