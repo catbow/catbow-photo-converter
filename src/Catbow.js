@@ -4,7 +4,7 @@ import Home from './pages/Home';
 
 const Catbow = () => {
   const option = {
-    imgUrl: 'catbow-photo-converter/image/IMG_',
+    imgUrl: 'image/IMG_',
     videoImageCount: 702, // Total-number-of-images
     startNum: 1, // Image-path-start-number
     extension: '.jpg', // Available-with-any-image-extension
