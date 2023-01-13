@@ -5,7 +5,7 @@ const HeaderAd = () => {
     let ins = document.createElement('ins');
     let scr = document.createElement('script');
     ins.className = 'kakao_ad_area';
-    ins.style = 'display:none; width:100%;';
+    // ins.style = 'display:none; width:100%;';
     scr.async = 'true';
     scr.type = 'text/javascript';
     scr.src = '//t1.daumcdn.net/kas/static/ba.min.js';
@@ -20,8 +20,7 @@ const HeaderAd = () => {
     <div
       className="headerAd"
       style={{
-        display: 'flex',
-        justifyContent: 'center',
+        position: 'fixed',
       }}
     />
   );

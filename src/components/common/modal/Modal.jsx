@@ -129,10 +129,12 @@ export default Modal;
 export const Background = styled.div`
   width: 100vw;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   color: ${({ theme }) => theme.style.white};
   background: rgba(0, 0, 0, 0.7);
-  z-index: 900;
+  top: 0;
+  left: 0;
+  z-index: 30;
 `;
 
 export const Layout = styled.div`
@@ -144,7 +146,6 @@ export const Layout = styled.div`
   background: ${({ theme }) => theme.style.mainColor};
   padding: 15px;
   border-radius: 20px;
-  z-index: 100;
   box-shadow: 2px 2px 5px 2px #333333;
 `;
 

@@ -9,7 +9,7 @@ import HeaderAd from '../components/common/adContainer/Header';
 
 const Home = () => {
   return (
-    <>
+    <div style={{ zIndex: 1 }}>
       <Modal />
       <HeaderAd />
       <Layout>
@@ -18,7 +18,7 @@ const Home = () => {
         <MainContainer />
         <SiderRight />
       </Layout>
-    </>
+    </div>
   );
 };
 
@@ -27,5 +27,5 @@ export default Home;
 export const Layout = styled.div`
   ${({ theme }) => theme.variables.flex()};
   ${({ theme }) => theme.variables.fixedCenter};
-  padding-top: 12%;
+  /* padding-top: 12%; */
 `;

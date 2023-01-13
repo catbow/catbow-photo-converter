@@ -49,7 +49,6 @@ const useS3download = () => {
       }
     });
   };
-
   /** 서버로 fileKey 보내는 함수, response로 videoName과 videoId를 받음 */
 
   const sendToServer = fileKey => {
@@ -68,9 +67,7 @@ const useS3download = () => {
 
   const getZipFileToSever = (videoName, videoId) => {
     getZipFileToSeverAxios(videoName, videoId)
-      .then(res => {
-        saveZipFile(res.data.img);
-      })
+      .then(res => saveZipFile(res.data.img))
       .catch(err => {
         setMode('error');
         console.error(err);
