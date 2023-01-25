@@ -20,8 +20,8 @@ const Loading = () => {
 export default Loading;
 
 const StyledLoading = styled.div`
-  ${props => props.theme.variables.flex()};
-  ${props => props.theme.variables.fixedCenter};
+  ${({ theme }) => theme.variables.flex()};
+  ${({ theme }) => theme.variables.fixedCenter};
   background: ${props => props.theme.style.mainColor};
   z-index: 100;
   transition: 0.7s;
