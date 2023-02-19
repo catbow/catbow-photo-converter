@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Modal from '../components/common/modal/Modal';
+import Modal from '../components/common/modal/Modal';
 import MainContainer from '../components/main/MainContainer';
 import SiderLeft from '../components/common/adContainer/SiderLeft';
 import Loading from '../components/common/page/Loading';
