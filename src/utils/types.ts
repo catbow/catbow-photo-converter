@@ -2,10 +2,6 @@ export interface ThemeProps {
   [x: string]: string;
 }
 
-export interface FileDataProps {
-  [x: string]: string;
-}
-
 export interface FileContextProps {
   fileUrl: string;
   setFileUrl: React.Dispatch<React.SetStateAction<string>>;
