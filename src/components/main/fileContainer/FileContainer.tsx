@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useUploadFile } from '../../contexts/ContextWrapper';
 import DeleteButton from './button/DeleteButton';
@@ -33,7 +32,7 @@ const FileContainer = () => {
 export default FileContainer;
 
 export const Layout = styled.article`
-  ${props => props.theme.variables.flex('column')};
+  ${({ theme }) => theme.variables.flex('column')};
   min-width: 400px;
   min-height: 600px;
   padding: 5%;

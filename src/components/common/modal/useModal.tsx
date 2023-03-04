@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-concat */
 import { useRef } from 'react';
 import { useVisibleModal } from '../../contexts/ContextWrapper';
 
@@ -6,10 +5,10 @@ export const useModal = () => {
   const visibleModalRef = useRef();
   const { setOnModal } = useVisibleModal();
 
-  const clickOutSide = e => {
+  const clickOutSide = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (
       setOnModal &&
-      (visibleModalRef.current === e.target.parentElement ||
+      (visibleModalRef.current === e.currentTarget.parentElement ||
         visibleModalRef.current === e.target)
     ) {
       return;
@@ -18,7 +17,7 @@ export const useModal = () => {
     if (
       setOnModal &&
       (visibleModalRef.current !== e.target ||
-        visibleModalRef.current !== e.target.parentElement)
+        visibleModalRef.current !== e.currentTarget.parentElement)
     ) {
       setOnModal(pre => !pre);
     }

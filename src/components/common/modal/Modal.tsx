@@ -1,9 +1,11 @@
-import React from 'react';
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { KeyEventTargetProps } from 'utils/types';
+
+import useS3download from '../../main/hooks/useS3Download';
+
 import { useUploadFile, useVisibleModal } from '../../contexts/ContextWrapper';
 import { useModal } from './useModal';
-import styled from 'styled-components';
-import useS3download from '../../main/hooks/useS3Download';
-import { useEffect } from 'react';
 
 export const modalTitle = {
   DELELTE_TITLE: 'Are you sure you want to delete it?',
@@ -42,7 +44,7 @@ const Modal = () => {
           },
         };
 
-  const handleCancel = e => {
+  const handleCancel = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     setOnModal(pre => !pre);
   };
@@ -130,7 +132,7 @@ export const Background = styled.div`
   width: 100vw;
   height: 100vh;
   position: absolute;
-  color: ${({ theme }) => theme.style.white};
+  color: ${({ theme }) => theme.colors.white};
   background: rgba(0, 0, 0, 0.7);
   top: 0;
   left: 0;
@@ -143,7 +145,7 @@ export const Layout = styled.div`
   width : 300px;
   height: 200px;
   border: #333333 1px solid;
-  background: ${({ theme }) => theme.style.mainColor};
+  background: ${({ theme }) => theme.colors.mainColor};
   padding: 15px;
   border-radius: 20px;
   box-shadow: 2px 2px 5px 2px #333333;
@@ -160,7 +162,7 @@ export const ButtonContainer = styled.div`
   ${props => props.theme.variables.flex('row', 'space-evenly', 'center')}
 `;
 
-export const ButtonYes = styled.button`
+export const ButtonYes = styled.button<KeyEventTargetProps>`
   color: ${({ keyEventTarget }) => (keyEventTarget === 'left' ? 'red' : '')};
   font-size: 17px;
   cursor: pointer;
@@ -169,7 +171,7 @@ export const ButtonYes = styled.button`
   }
 `;
 
-export const ButtonNo = styled.button`
+export const ButtonNo = styled.button<KeyEventTargetProps>`
   color: ${({ keyEventTarget }) => (keyEventTarget === 'right' ? 'red' : '')};
   font-size: 17px;
   cursor: pointer;

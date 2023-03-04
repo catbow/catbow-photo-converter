@@ -24,7 +24,7 @@ export const useLoadFile = () => {
           if (videoElement.duration > 30) {
             alert('Videos must not be longer than 30 seconds 😥');
             window.location.reload();
-            setFileList('');
+            setFileList(null);
             setFileUrl('');
             setButtonState(pre => !pre);
           }

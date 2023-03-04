@@ -1,4 +1,6 @@
-const theme = {
+export type ColorsType = typeof colors;
+
+const colors = {
   mainColor: 'rgb(66, 66, 66)',
   white: '#FFFFFF',
   mainBeige: '#ffff',
@@ -8,4 +10,4 @@ const theme = {
   blue: '#536DFE',
 };
 
-export default theme;
+export default colors;

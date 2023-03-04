@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const HeaderAd = () => {
   useEffect(() => {
@@ -6,7 +6,7 @@ const HeaderAd = () => {
     let scr = document.createElement('script');
     ins.className = 'kakao_ad_area';
     // ins.style = 'display:none; width:100%;';
-    scr.async = 'true';
+    // scr.async = 'true';
     scr.type = 'text/javascript';
     scr.src = '//t1.daumcdn.net/kas/static/ba.min.js';
     ins.setAttribute('data-ad-width', '728');

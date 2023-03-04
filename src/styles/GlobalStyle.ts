@@ -1,11 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
   html {
-    background:${theme.mainColor};
+    background:${({ theme }) => theme.colors.mainColor};
   }
   main{
     width: 100%;

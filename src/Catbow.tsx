@@ -1,4 +1,3 @@
-import React from 'react';
 import ScrollView from 'react-catbow-scrollview';
 import Home from './pages/Home';
 
