@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import FileContainer from './fileContainer/FileContainer';
 
@@ -42,6 +42,7 @@ export const Title = styled.h1`
   padding-bottom: 20px;
   ${({ theme }) => theme.variables.rainBowColor};
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   position: relative;
 `;
@@ -50,7 +51,7 @@ export const Tooltip = styled.div`
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
-  visibility: ${({ hover }) => !hover && 'hidden'};
+  visibility: ${({ hover }: { hover: boolean | string }) => !hover && 'hidden'};
   width: 190%;
   background-color: black;
   color: #fff;

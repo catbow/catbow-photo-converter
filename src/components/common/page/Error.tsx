@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
   useLoading,
@@ -32,9 +31,9 @@ const Error = () => {
 export default Error;
 
 export const Layout = styled.div`
-  ${props => props.theme.variables.flex('column')};
-  ${props => props.theme.variables.fixedCenter};
-  background: ${props => props.theme.style.mainColor};
+  ${({ theme }) => theme.variables.flex('column')};
+  ${({ theme }) => theme.variables.fixedCenter};
+  background: ${({ theme }) => theme.colors.mainColor};
   z-index: 200;
   font-size: 40px;
   font-weight: 900;

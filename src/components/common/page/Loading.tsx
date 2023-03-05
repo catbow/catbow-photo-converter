@@ -22,7 +22,7 @@ export default Loading;
 const StyledLoading = styled.div`
   ${({ theme }) => theme.variables.flex()};
   ${({ theme }) => theme.variables.fixedCenter};
-  background: ${props => props.theme.style.mainColor};
+  background: ${props => props.theme.colors.mainColor};
   z-index: 100;
   transition: 0.7s;
 `;

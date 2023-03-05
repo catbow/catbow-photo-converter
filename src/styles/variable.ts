@@ -1,5 +1,7 @@
 import { css } from 'styled-components';
 
+export type VariablesType = typeof variables;
+
 const variables = {
   flex: (direction = 'row', justify = 'center', align = 'center') => `
     display: flex;

@@ -5,7 +5,7 @@ import { useLoading, useUploadFile } from '../../contexts/ContextWrapper';
 import {
   sendUrlToSeverAxios,
   getZipFileToSeverAxios,
-} from '../../../Api/axiosApi';
+} from '../../../api/axiosApi';
 
 const useS3download = () => {
   const { fileList } = useUploadFile();
@@ -51,7 +51,7 @@ const useS3download = () => {
   };
   /** 서버로 fileKey 보내는 함수, response로 videoName과 videoId를 받음 */
 
-  const sendToServer = fileKey => {
+  const sendToServer = (fileKey: string) => {
     sendUrlToSeverAxios(fileKey)
       .then(res =>
         //TODO 광고
@@ -65,7 +65,7 @@ const useS3download = () => {
 
   /** 서버로 videoName과 videoId를 보내는 함수, 이를 통해서 해당 zip파일 받습니다 */
 
-  const getZipFileToSever = (videoName, videoId) => {
+  const getZipFileToSever = (videoName: string, videoId: string) => {
     getZipFileToSeverAxios(videoName, videoId)
       .then(res => saveZipFile(res.data.img))
       .catch(err => {
@@ -76,7 +76,7 @@ const useS3download = () => {
 
   /** 해당 zip파일 받아서 자동 다운로드하는 함수 */
 
-  const saveZipFile = zipFile => {
+  const saveZipFile = (zipFile: RequestInfo | URL) => {
     fetch(zipFile, { method: 'GET' })
       .then(res => {
         return res.blob();

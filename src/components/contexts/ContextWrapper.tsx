@@ -1,22 +1,27 @@
 import { createContext, useContext, useState } from 'react';
+import {
+  FileContextProps,
+  LoadingContextProps,
+  ModalContextProps,
+} from 'utils/types';
 
-export const ModalContext = createContext();
-export const FileContext = createContext();
-export const LoadingContext = createContext();
+export const FileContext = createContext<FileContextProps>(null);
+export const ModalContext = createContext<ModalContextProps>(null);
+export const LoadingContext = createContext<LoadingContextProps>(null);
 
-export const ContextWrapper = ({ children }) => {
-  const [fileUrl, setFileUrl] = useState('');
-  const [buttonState, setButtonState] = useState(true);
-  const [fileList, setFileList] = useState([]);
+export const ContextWrapper = ({ children }: { children: JSX.Element }) => {
+  const [fileUrl, setFileUrl] = useState<string>('');
+  const [buttonState, setButtonState] = useState<boolean>(true);
+  const [fileList, setFileList] = useState<File>(null);
 
-  const [onModal, setOnModal] = useState(false);
+  const [onModal, setOnModal] = useState<boolean>(false);
   const [isModalUploadButton, setIsModalUploadButton] =
-    useState('deleteButton');
-  const [keyEventTarget, setKeyEventTarget] = useState('left');
+    useState<string>('deleteButton');
+  const [keyEventTarget, setKeyEventTarget] = useState<string>('left');
 
-  const [loadingToogle, setLoadingToogle] = useState(false);
+  const [loadingToogle, setLoadingToogle] = useState<boolean>(false);
 
-  const [mode, setMode] = useState('show');
+  const [mode, setMode] = useState<string>('show');
 
   return (
     <FileContext.Provider

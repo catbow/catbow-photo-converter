@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const sendUrlToSeverAxios = fileKey => {
+export const sendUrlToSeverAxios = (fileKey: string) => {
   const video = {
     video: fileKey,
   };
@@ -12,7 +12,7 @@ export const sendUrlToSeverAxios = fileKey => {
   return res;
 };
 
-export const getZipFileToSeverAxios = (videoName, videoId) => {
+export const getZipFileToSeverAxios = (videoName: string, videoId: string) => {
   const datas = {
     videoName: videoName,
     videoId: videoId,

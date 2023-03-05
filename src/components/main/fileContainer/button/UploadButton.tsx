@@ -1,5 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
+import { ButtonStateProps } from 'utils/types';
+
 import {
   useUploadFile,
   useVisibleModal,
@@ -11,9 +12,7 @@ const UploadButton = () => {
   const { buttonState, setButtonState, fileList, fileUrl } = useUploadFile();
   const { setOnModal, setIsModalUploadButton } = useVisibleModal();
 
-  const ableToConvert = fileList[0]?.size < 20971520 && fileList.length !== 0;
-
-  const buttonStateProps =
+  const buttonStateProps: ButtonStateProps =
     buttonState && fileUrl.length === 0
       ? {
           type: 'file',
@@ -24,7 +23,8 @@ const UploadButton = () => {
         }
       : {
           type: 'button',
-          disabled: !ableToConvert,
+          disabled: !(fileList[0]?.size < 20971520 && fileList !== null),
+          // !ableToConvert,
           onClick: e => {
             e.preventDefault();
             fileUrl.length !== 0 && setOnModal(pre => !pre);
