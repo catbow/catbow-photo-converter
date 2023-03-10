@@ -11,18 +11,19 @@ const Catbow = () => {
 
   const option = {
     imgUrl: url,
-    videoImageCount: 702, // Total-number-of-images
+    videoImageCount: 29, // Total-number-of-images
     startNum: 1, // Image-path-start-number
     extension: '.jpg', // Available-with-any-image-extension
-    scrollAreaY: 50000, // scrollArea,
+    scrollAreaY: 1000, // scrollArea,
     viewPort: {
       width: '100vw',
       height: '100vh',
     },
   };
+
   useEffect(() => {
     function fetchImages(index: number) {
-      if (index > 703) {
+      if (index > 31) {
         return;
       }
       axios(
