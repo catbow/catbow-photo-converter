@@ -24,7 +24,7 @@ const Catbow = () => {
   };
   useEffect(() => {
     function fetchImages(index: number) {
-      if (index >= 702) {
+      if (index > 703) {
         return;
       }
       axios(
@@ -35,7 +35,7 @@ const Catbow = () => {
       });
     }
     if (process.env.NODE_ENV !== 'development') {
-      fetchImages(0);
+      fetchImages(1);
     }
   }, []);
 
