@@ -3,8 +3,6 @@ import ScrollView from 'react-catbow-scrollview';
 import Home from './pages/Home';
 import axios from 'axios';
 
-const imageCount = 702;
-// 1~ 703
 const Catbow = () => {
   const url =
     process.env.NODE_ENV === 'development'
