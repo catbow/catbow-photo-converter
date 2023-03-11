@@ -20,65 +20,67 @@ const Modal = () => {
     onModal,
     setOnModal,
     isModalUploadButton,
-    setIsModalUploadButton,
     keyEventTarget,
     setKeyEventTarget,
+    setIsModalUploadButton,
   } = useVisibleModal();
 
   const modalProps =
     onModal && isModalUploadButton === 'uploadButton'
       ? {
+          /** convert 모달 yes 버튼  */
           onClick: () => {
-            setOnModal(false);
-            setFileUrl('');
             submitFile();
-            setIsModalUploadButton('deleteButton');
+            setFileUrl('');
             setButtonState(pre => !pre);
           },
         }
       : {
           onClick: () => {
-            deleteFile();
-            setIsModalUploadButton('deleteButton');
+            /** delete 모달 yes 버튼 */
+            setFileUrl('');
             setButtonState(pre => !pre);
           },
         };
 
   const handleCancel = (e: { stopPropagation: () => void }) => {
+    /** 모달 관계 없이 취소 버튼 누를 때  */
     e.stopPropagation();
     setOnModal(pre => !pre);
   };
 
-  const deleteFile = () => {
-    setFileUrl('');
-  };
-
   useEffect(() => {
-    const keyEvent = ({ key }) => {
-      if (key === 'Enter' && isModalUploadButton === 'uploadButton') {
+    /** 키이벤트 */
+    const keyEvent = (e: { preventDefault: () => void; key: string }) => {
+      if (e.key === 'Enter' && isModalUploadButton === 'uploadButton') {
         if (keyEventTarget === 'left') {
+          e.preventDefault();
+          setOnModal(prev => !prev);
           submitFile();
+          setFileUrl('');
+          setButtonState(prev => !prev);
         }
         if (keyEventTarget === 'right') {
           setKeyEventTarget('left');
         }
       }
 
-      if (key === 'Enter' && isModalUploadButton === 'deleteButton') {
+      if (e.key === 'Enter' && isModalUploadButton === 'deleteButton') {
         if (keyEventTarget === 'left') {
+          e.preventDefault();
           setFileUrl('');
-          setButtonState(pre => !pre);
-          setOnModal(false);
+          setOnModal(pre => !pre);
+          setButtonState(prev => !prev);
         }
         if (keyEventTarget === 'right') {
-          setOnModal(false);
           setKeyEventTarget('left');
+          setOnModal(pre => !pre);
         }
       }
-      if (key === 'ArrowLeft') {
+      if (e.key === 'ArrowLeft') {
         setKeyEventTarget('left');
       }
-      if (key === 'ArrowRight') {
+      if (e.key === 'ArrowRight') {
         setKeyEventTarget('right');
       }
     };
@@ -92,6 +94,7 @@ const Modal = () => {
     onModal,
     setButtonState,
     setFileUrl,
+    setIsModalUploadButton,
     setKeyEventTarget,
     setOnModal,
     submitFile,

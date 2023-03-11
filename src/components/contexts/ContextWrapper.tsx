@@ -19,8 +19,6 @@ export const ContextWrapper = ({ children }: { children: JSX.Element }) => {
     useState<string>('deleteButton');
   const [keyEventTarget, setKeyEventTarget] = useState<string>('left');
 
-  const [loadingToogle, setLoadingToogle] = useState<boolean>(false);
-
   const [mode, setMode] = useState<string>('show');
 
   return (
@@ -46,8 +44,6 @@ export const ContextWrapper = ({ children }: { children: JSX.Element }) => {
       >
         <LoadingContext.Provider
           value={{
-            loadingToogle,
-            setLoadingToogle,
             mode,
             setMode,
           }}
