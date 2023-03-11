@@ -23,7 +23,7 @@ const Catbow = () => {
 
   useEffect(() => {
     function fetchImages(index: number) {
-      if (index > 31) {
+      if (index > 30) {
         return;
       }
       axios(

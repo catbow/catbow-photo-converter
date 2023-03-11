@@ -24,7 +24,6 @@ const UploadButton = () => {
       : {
           type: 'button',
           disabled: !(fileList[0]?.size < 20971520 && fileList !== null),
-          // !ableToConvert,
           onClick: e => {
             e.preventDefault();
             fileUrl.length !== 0 && setOnModal(pre => !pre);

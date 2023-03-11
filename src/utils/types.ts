@@ -21,8 +21,6 @@ export interface ModalContextProps {
 }
 
 export interface LoadingContextProps {
-  loadingToogle: boolean;
-  setLoadingToogle: React.Dispatch<React.SetStateAction<boolean>>;
   mode: string;
   setMode: React.Dispatch<React.SetStateAction<string>>;
 }
