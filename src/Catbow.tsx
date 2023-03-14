@@ -3,33 +3,12 @@ import ScrollView, { TypeScrollView } from 'react-catbow-scrollview';
 import Home from './pages/Home';
 import axios from 'axios';
 
-/** 이미지 몇장씩 불러올지 설정 */
-const imageRanges = [
-  { start: 1, end: 70 },
-  { start: 71, end: 140 },
-  { start: 141, end: 210 },
-  { start: 211, end: 280 },
-  { start: 281, end: 350 },
-  { start: 351, end: 420 },
-  { start: 421, end: 490 },
-  { start: 491, end: 560 },
-  { start: 561, end: 630 },
-  { start: 631, end: 703 },
-];
-
 const Catbow = () => {
   const [ejectRatio, setEjectRatio] = useState(0);
   const imgGetController = useRef({
     1: false,
     2: false,
     3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false,
-    8: false,
-    9: false,
-    10: false,
   });
   const url =
     process.env.NODE_ENV === 'development'
@@ -60,14 +39,16 @@ const Catbow = () => {
         fetchImages({ start: start + 1, end });
       });
     }
-    if (process.env.NODE_ENV !== 'development') {
-      for (let i = 1; i <= imageRanges.length; i++) {
-        const imageRange = imageRanges[i - 1];
-        if (ejectRatio > i * 7 && !imgGetController.current[i]) {
-          fetchImages(imageRange);
-          imgGetController.current[i] = true;
-        }
-      }
+
+    if (!imgGetController.current[3] && ejectRatio > 50) {
+      fetchImages({ start: 521, end: 703 });
+      imgGetController.current[3] = true;
+    } else if (!imgGetController.current[2] && ejectRatio > 20) {
+      fetchImages({ start: 281, end: 520 });
+      imgGetController.current[2] = true;
+    } else if (!imgGetController.current[1] && ejectRatio >= 0) {
+      fetchImages({ start: 1, end: 280 });
+      imgGetController.current[1] = true;
     }
   }, [ejectRatio]);
 
