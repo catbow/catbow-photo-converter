@@ -7,12 +7,12 @@ export const useLoadFile = () => {
     const passed = e.target.files[0]?.type === 'video/mp4';
 
     if (!e.target.files) {
-      return alert('파일이 업로드 되지 않았습니다');
+      return alert('The file was not uploaded, please try again.');
     }
 
     if (!passed) {
       setButtonState(pre => !pre);
-      return alert('mp4 형식만 가능합니다');
+      return alert('Sorry, we only support mp4 format.');
     }
 
     if (passed) {

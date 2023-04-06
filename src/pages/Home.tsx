@@ -8,7 +8,7 @@ import HeaderAd from '../components/common/adContainer/Header';
 
 const Home = () => {
   return (
-    <div style={{ zIndex: 1 }}>
+    <HomeLayout>
       <Modal />
       <HeaderAd />
       <Layout>
@@ -17,7 +17,7 @@ const Home = () => {
         <MainContainer />
         <SiderRight />
       </Layout>
-    </div>
+    </HomeLayout>
   );
 };
 
@@ -27,4 +27,8 @@ export const Layout = styled.div`
   ${({ theme }) => theme.variables.flex()};
   ${({ theme }) => theme.variables.fixedCenter};
   /* padding-top: 12%; */
+`;
+
+export const HomeLayout = styled.div`
+  z-index: 1;
 `;
